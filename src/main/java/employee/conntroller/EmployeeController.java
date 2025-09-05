@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import employee.employeeDto.EmployeeForm;
 import employee.entity.Employee;
 import employee.globalExceptions.DataNotFoundException;
+import employee.response.Response;
 import employee.service.EmployeeServices;
 import employee.utility.EmployeeObjectConverter;
 import lombok.RequiredArgsConstructor;
@@ -28,9 +29,8 @@ public class EmployeeController {
     }
 
     @GetMapping("getEmployee")
-    public EmployeeForm getEmployee(@RequestParam Long id) throws DataNotFoundException {
-        Employee employee = employeeServices.getEmployeeById(id);
-        return employeeObjectConverter.employeeForm(employee);
+    public Response getEmployee(@RequestParam Long id) throws DataNotFoundException {
+        return employeeServices.getEmployeeById(id);
     }
 
 }
