@@ -29,8 +29,9 @@ public class EmployeeServices {
         if (optionalEmployee.isPresent()) {
             EmployeeForm eform = employeeObjectConverter.employeeForm(optionalEmployee.get());
             response.setEmployeeForm(eform);
-            DepartmentForm dform = restTemplate.getForObject("http://localhost:8082/department/getDepartment?dept_id="
-                    + eform.getDepartmentId(), DepartmentForm.class);
+            DepartmentForm dform = restTemplate
+                    .getForObject("http://department-services/department/getDepartment?dept_id="
+                            + eform.getDepartmentId(), DepartmentForm.class);
             response.setDepartmentForm(dform);
             return response;
         } else {
